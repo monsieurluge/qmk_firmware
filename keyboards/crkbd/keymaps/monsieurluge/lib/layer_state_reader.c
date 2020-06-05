@@ -18,10 +18,10 @@ const char *read_layer_state(void) {
             snprintf(layer_state_str, sizeof(layer_state_str), " >> symbols");
             break;
         case L_FN2:
-            snprintf(layer_state_str, sizeof(layer_state_str), " >> nav. cluster");
+            snprintf(layer_state_str, sizeof(layer_state_str), " >> nav. & media");
             break;
         case L_FN3:
-            snprintf(layer_state_str, sizeof(layer_state_str), " >> numbers");
+            snprintf(layer_state_str, sizeof(layer_state_str), " >> numbers & layouts");
             break;
         default:
             snprintf(layer_state_str, sizeof(layer_state_str), " >> unknown (%ld)", layer_state);
