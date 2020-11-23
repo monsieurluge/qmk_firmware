@@ -90,19 +90,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ┌─────┬─────┤  @  ├─────┤  $  ├─────┐              ┌─────┤  &  ├─────┤  (  ├─────┬─────┐
      * │  ~  │  !  ├─────┤  +  ├─────┤  %  │              │  ^  ├─────┤  -  ├─────┤  )  │ del │
      * ├─────┼─────┤  =  ├─────┤  {  ├─────┤              ├─────┤  }  ├─────┤  _  ├─────┼─────┤
-     * │     │  '  ├─────┤     ├─────┤  "  │              │  |  ├─────┤     ├─────┤  `  │     │
-     * ├─────┼─────┤     ├─────┤  [  ├─────┤              ├─────┤  ]  ├─────┤     ├─────┼─────┤
-     * │     │     ├─────┘     └─────┤     │              │     ├─────┘     └─────┤  \  │     │
+     * │     │  '  ├─────┤copy ├─────┤  "  │              │  |  ├─────┤     ├─────┤  `  │     │
+     * ├─────┼─────┤ cut ├─────┤  [  ├─────┤              ├─────┤  ]  ├─────┤     ├─────┼─────┤
+     * │     │undo ├─────┘     └─────┤paste│              │     ├─────┘     └─────┤  \  │     │
      * └─────┴─────┘        ┌─────┐  └─────┘              └─────┘  ┌─────┐        └─────┴─────┘
      *                      │     │┌─────┐┌─────┐    ┌─────┐┌─────┐│     │
      *                      └─────┘│     ││     │    │     ││     │└─────┘
      *                             └─────┘└─────┘    └─────┘└─────┘
      */
     [LY_FN1] = LAYOUT( \
-    KC_TILD, KC_EXLM, KC_AT,    KC_HASH, KC_DLR,  KC_PERC,        KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL, \
-    _______, KC_QUOT, KC_EQUAL, KC_PLUS, KC_LCBR, KC_DQT,         KC_PIPE, KC_RCBR, KC_MINS, KC_UNDS, KC_GRV,  _______, \
-    _______, XXXXXXX, XXXXXXX,  XXXXXXX, KC_LBRC, XXXXXXX,        XXXXXXX, KC_RBRC, XXXXXXX, XXXXXXX, KC_BSLS, _______, \
-                                _______, _______, _______,        _______, _______, _______ \
+    KC_TILD, KC_EXLM, KC_AT,    KC_HASH, KC_DLR,  KC_PERC,         KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL, \
+    _______, KC_QUOT, KC_EQUAL, KC_PLUS, KC_LCBR, KC_DQT,          KC_PIPE, KC_RCBR, KC_MINS, KC_UNDS, KC_GRV,  _______, \
+    _______, KC_UNDO, KC_CUT,   KC_COPY, KC_LBRC, KC_PASTE,        XXXXXXX, KC_RBRC, XXXXXXX, XXXXXXX, KC_BSLS, _______, \
+                                _______, _______, _______,         _______, _______, _______ \
     ),
 
     /* fn2 - navigation and function keys
