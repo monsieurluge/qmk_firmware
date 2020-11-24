@@ -22,6 +22,10 @@ extern uint8_t is_master;
 
 // special key shortcuts -------------------------------------------------------
 
+#define CUT     LCTL(KC_X)
+#define COPY    LCTL(KC_C)
+#define PASTE   LCTL(KC_V)
+#define UNDO    LCTL(KC_Z)
 #define SP_CTTB CTL_T(KC_TAB)        // tab or left control when held
 #define SP_CTEN CTL_T(KC_ENT)        // enter or left control when held
 #define SP_SPSH MT(MOD_LSFT, KC_SPC) // space or left shift when held
@@ -99,10 +103,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                             └─────┘└─────┘    └─────┘└─────┘
      */
     [LY_FN1] = LAYOUT( \
-    KC_TILD, KC_EXLM, KC_AT,    KC_HASH, KC_DLR,  KC_PERC,         KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL, \
-    _______, KC_QUOT, KC_EQUAL, KC_PLUS, KC_LCBR, KC_DQT,          KC_PIPE, KC_RCBR, KC_MINS, KC_UNDS, KC_GRV,  _______, \
-    _______, KC_UNDO, KC_CUT,   KC_COPY, KC_LBRC, KC_PASTE,        XXXXXXX, KC_RBRC, RALT(KC_5), XXXXXXX, KC_BSLS, _______, \
-                                _______, _______, _______,         _______, _______, _______ \
+    KC_TILD, KC_EXLM, KC_AT,    KC_HASH, KC_DLR,  KC_PERC,        KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL, \
+    _______, KC_QUOT, KC_EQUAL, KC_PLUS, KC_LCBR, KC_DQT,         KC_PIPE, KC_RCBR, KC_MINS, KC_UNDS, KC_GRV,  _______, \
+    _______, UNDO,    CUT,      COPY,    KC_LBRC, PASTE,          XXXXXXX, KC_RBRC, RALT(KC_5), XXXXXXX, KC_BSLS, _______, \
+                                _______, _______, _______,        _______, _______, _______ \
     ),
 
     /* fn2 - navigation and function keys
