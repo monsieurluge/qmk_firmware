@@ -26,21 +26,10 @@ extern uint8_t is_master;
 #define COPY    LCTL(KC_C)
 #define PASTE   LCTL(KC_V)
 #define UNDO    LCTL(KC_Z)
+#define SP_GAME TG(LY_GAME)          // toggles the "gaming" layer
 #define SP_CTTB CTL_T(KC_TAB)        // tab or left control when held
 #define SP_CTEN CTL_T(KC_ENT)        // enter or left control when held
 #define SP_SPSH MT(MOD_LSFT, KC_SPC) // space or left shift when held
-#define SP_ESGA TD(TD_ESC_GAME)      // esc or gaming layout when tapped twice
-
-// tap dance -------------------------------------------------------------------
-
-enum {
-  TD_ESC_GAME = 0
-};
-
-qk_tap_dance_action_t tap_dance_actions[] = {
-  // tap once for ESC, twice to enable the gaming layout
-  [TD_ESC_GAME] = ACTION_TAP_DANCE_LAYER_TOGGLE(KC_ESC, LY_GAME)
-};
 
 // layouts ---------------------------------------------------------------------
 
@@ -61,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                             └─────┘└─────┘    └─────┘└─────┘
      */
     [LY_CLMK] = LAYOUT( \
-    SP_ESGA, KC_Q, KC_W, KC_F,       KC_P,       KC_B,            KC_J,   KC_L,       KC_U,    KC_Y,   KC_SCLN, KC_BSPC, \
+    KC_ESC,  KC_Q, KC_W, KC_F,       KC_P,       KC_B,            KC_J,   KC_L,       KC_U,    KC_Y,   KC_SCLN, KC_BSPC, \
     KC_TAB,  KC_A, KC_R, KC_S,       KC_T,       KC_G,            KC_M,   KC_N,       KC_E,    KC_I,   KC_O,    KC_ENT, \
     KC_LGUI, KC_Z, KC_X, KC_C,       KC_D,       KC_V,            KC_K,   KC_H,       KC_COMM, KC_DOT, KC_SLSH, KC_LALT, \
                          MO(LY_FN3), MO(LY_FN1), KC_LSFT,         KC_SPC, MO(LY_FN2), KC_LCTRL \
@@ -82,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                             └─────┘└─────┘    └─────┘└─────┘
      */
     [LY_GAME] = LAYOUT( \
-    SP_ESGA, _______, _______, _______,  _______, _______,           _______, _______,    _______, _______, _______, KC_BSPC, \
+    KC_ESC,  _______, _______, _______,  _______, _______,           _______, _______,    _______, _______, _______, KC_BSPC, \
     KC_TAB,  _______, _______, _______,  _______, _______,           _______, _______,    _______, _______, _______, KC_ENT, \
     KC_LSFT, _______, _______, _______,  _______, _______,           _______, _______,    _______, _______, _______, KC_LGUI, \
                                KC_LCTRL, KC_SPC,  MO(LY_FN1),        KC_SPC,  MO(LY_FN2), MO(LY_FN3) \
@@ -134,7 +123,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                   ┌─────┐                                      ┌─────┐
      *             ┌─────┤     ├─────┐                          ┌─────┤  8  ├─────┐
      * ┌─────┬─────┤     ├─────┤     ├─────┐              ┌─────┤  7  ├─────┤  9  ├─────┬─────┐
-     * │     │     ├─────┤prev ├─────┤     │              │     ├─────┤  5  ├─────┤  -  │     │
+     * │     │     ├─────┤prev ├─────┤game │              │     ├─────┤  5  ├─────┤  -  │     │
      * ├─────┼─────┤play ├─────┤next ├─────┤              ├─────┤  4  ├─────┤  6  ├─────┼─────┤
      * │     │     ├─────┤vol- ├─────┤     │              │     ├─────┤  2  ├─────┤  .  │     │
      * ├─────┼─────┤mute ├─────┤vol+ ├─────┤              ├─────┤  1  ├─────┤  3  ├─────┼─────┤
@@ -145,7 +134,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                             └─────┘└─────┘    └─────┘└─────┘
      */
     [LY_FN3] = LAYOUT( \
-    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,         XXXXXXX, KC_7,    KC_8,   KC_9, KC_MINS, _______, \
+    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, SP_GAME,         XXXXXXX, KC_7,    KC_8,   KC_9, KC_MINS, _______, \
     _______, XXXXXXX, KC_MPLY, KC_MPRV, KC_MNXT, XXXXXXX,         XXXXXXX, KC_4,    KC_5,   KC_6, KC_DOT,  _______, \
     _______, XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU, XXXXXXX,         XXXXXXX, KC_1,    KC_2,   KC_3, KC_0,    _______, \
                                _______, _______, _______,         KC_0 ,   _______, _______ \
