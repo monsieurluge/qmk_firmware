@@ -30,6 +30,9 @@ extern uint8_t is_master;
 #define SP_CTTB CTL_T(KC_TAB)        // tab or left control when held
 #define SP_CTEN CTL_T(KC_ENT)        // enter or left control when held
 #define SP_SPSH MT(MOD_LSFT, KC_SPC) // space or left shift when held
+#define SP_LY01 MO(LY_FN1)
+#define SP_LY02 MO(LY_FN2)
+#define SP_LY03 MO(LY_FN3)
 
 // layouts ---------------------------------------------------------------------
 
@@ -43,17 +46,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ├─────┼─────┤  R  ├─────┤  T  ├─────┤              ├─────┤  N  ├─────┤  I  ├─────┼─────┤
      * │ tab │  A  ├─────┤  C  ├─────┤  G  │              │  M  ├─────┤  ,  ├─────┤  O  │enter│
      * ├─────┼─────┤  X  ├─────┤  D  ├─────┤              ├─────┤  H  ├─────┤  .  ├─────┼─────┤
-     * │ gui │  Z  ├─────┘     └─────┤  V  │              │  K  ├─────┘     └─────┤  /  | alt │
+     * │ gui │  Z  ├─────┘     └─────┤  V  │              │  K  ├─────┘     └─────┤  /  │ alt │
      * └─────┴─────┘        ┌─────┐  └─────┘              └─────┘  ┌─────┐        └─────┴─────┘
      *                      │ fn3 │┌─────┐┌─────┐    ┌─────┐┌─────┐│ctrl │
      *                      └─────┘│ fn1 ││shift│    │space││ fn2 │└─────┘
      *                             └─────┘└─────┘    └─────┘└─────┘
      */
     [LY_CLMK] = LAYOUT( \
-    KC_ESC,  KC_Q, KC_W, KC_F,       KC_P,       KC_B,            KC_J,   KC_L,       KC_U,    KC_Y,   KC_SCLN, KC_BSPC, \
-    KC_TAB,  KC_A, KC_R, KC_S,       KC_T,       KC_G,            KC_M,   KC_N,       KC_E,    KC_I,   KC_O,    KC_ENT, \
-    KC_LGUI, KC_Z, KC_X, KC_C,       KC_D,       KC_V,            KC_K,   KC_H,       KC_COMM, KC_DOT, KC_SLSH, KC_LALT, \
-                         MO(LY_FN3), MO(LY_FN1), KC_LSFT,         KC_SPC, MO(LY_FN2), KC_LCTRL \
+    KC_ESC,  KC_Q, KC_W, KC_F,    KC_P,    KC_B,    KC_J,   KC_L,    KC_U,    KC_Y,   KC_SCLN, KC_BSPC, \
+    KC_TAB,  KC_A, KC_R, KC_S,    KC_T,    KC_G,    KC_M,   KC_N,    KC_E,    KC_I,   KC_O,    KC_ENT, \
+    KC_LGUI, KC_Z, KC_X, KC_C,    KC_D,    KC_V,    KC_K,   KC_H,    KC_COMM, KC_DOT, KC_SLSH, KC_LALT, \
+                         SP_LY03, SP_LY01, KC_LSFT, KC_SPC, SP_LY02, KC_LCTRL \
     ),
 
     /* gaming "layer mask"
@@ -64,17 +67,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ├─────┼─────┤     ├─────┤     ├─────┤              ├─────┤     ├─────┤     ├─────┼─────┤
      * │ tab │     ├─────┤     ├─────┤     │              │     ├─────┤     ├─────┤     │enter│
      * ├─────┼─────┤     ├─────┤     ├─────┤              ├─────┤     ├─────┤     ├─────┼─────┤
-     * │shift│     ├─────┘     └─────┤     │              │     ├─────┘     └─────┤     │ gui │
+     * │shift│     ├─────┘     └─────┤     │              │     ├─────┘     └─────┤     │ fn3 │
      * └─────┴─────┘        ┌─────┐  └─────┘              └─────┘  ┌─────┐        └─────┴─────┘
-     *                      │ctrl │┌─────┐┌─────┐    ┌─────┐┌─────┐│ fn3 │
-     *                      └─────┘│space││ fn1 │    │space││ fn2 │└─────┘
+     *                      │ctrl │┌─────┐┌─────┐    ┌─────┐┌─────┐│ gui │
+     *                      └─────┘│ fn1 ││space│    │sp/sh││ fn2 │└─────┘
      *                             └─────┘└─────┘    └─────┘└─────┘
      */
     [LY_GAME] = LAYOUT( \
-    KC_ESC,  _______, _______, _______,  _______, _______,           _______, _______,    _______, _______, _______, KC_BSPC, \
-    KC_TAB,  _______, _______, _______,  _______, _______,           _______, _______,    _______, _______, _______, KC_ENT, \
-    KC_LSFT, _______, _______, _______,  _______, _______,           _______, _______,    _______, _______, _______, KC_LGUI, \
-                               KC_LCTRL, KC_SPC,  MO(LY_FN1),        KC_SPC,  MO(LY_FN2), MO(LY_FN3) \
+    KC_ESC,  _______, _______, _______,  _______, _______, _______, _______, _______, _______, _______, KC_BSPC, \
+    KC_TAB,  _______, _______, _______,  _______, _______, _______, _______, _______, _______, _______, KC_ENT, \
+    KC_LSFT, _______, _______, _______,  _______, _______, _______, _______, _______, _______, _______, SP_LY03, \
+                               KC_LCTRL, SP_LY01, KC_SPC,  SP_SPSH, SP_LY02, KC_LGUI \
     ),
 
     /* fn1 - symbols
@@ -92,10 +95,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                             └─────┘└─────┘    └─────┘└─────┘
      */
     [LY_FN1] = LAYOUT( \
-    KC_TILD, KC_EXLM, KC_AT,    KC_HASH, KC_DLR,  KC_PERC,        KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL, \
-    _______, KC_QUOT, KC_EQUAL, KC_PLUS, KC_LCBR, KC_DQT,         KC_PIPE, KC_RCBR, KC_MINS, KC_UNDS, KC_GRV,  _______, \
-    KC_APP,  UNDO,    CUT,      COPY,    KC_LBRC, PASTE,          XXXXXXX, KC_RBRC, RALT(KC_5), XXXXXXX, KC_BSLS, _______, \
-                                _______, _______, _______,        _______, _______, _______ \
+    KC_TILD, KC_EXLM, KC_AT,    KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR,    KC_LPRN, KC_RPRN, KC_DEL, \
+    _______, KC_QUOT, KC_EQUAL, KC_PLUS, KC_LCBR, KC_DQT,  KC_PIPE, KC_RCBR, KC_MINS,    KC_UNDS, KC_GRV,  _______, \
+    KC_APP,  UNDO,    CUT,      COPY,    KC_LBRC, PASTE,   XXXXXXX, KC_RBRC, RALT(KC_5), XXXXXXX, KC_BSLS, _______, \
+                                _______, _______, _______, _______, _______, _______ \
     ),
 
     /* fn2 - navigation and function keys
@@ -106,17 +109,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ├─────┼─────┤     ├─────┤ctrl ├─────┤              ├─────┤left ├─────┤ up  ├─────┼─────┤
      * │     │     ├─────┤     ├─────┤     │              │home ├─────┤pgdwn├─────┤right│     │
      * ├─────┼─────┤     ├─────┤     ├─────┤              ├─────┤ end ├─────┤pgup ├─────┼─────┤
-     * │     │     ├─────┘     └─────┤     │              │     ├─────┘     └─────┤shift│ptscr│
+     * │     │     ├─────┘     └─────┤ptscr│              │     ├─────┘     └─────┤     │     │
      * └─────┴─────┘        ┌─────┐  └─────┘              └─────┘  ┌─────┐        └─────┴─────┘
      *                      │     │┌─────┐┌─────┐    ┌─────┐┌─────┐│     │
      *                      └─────┘│     ││     │    │     ││     │└─────┘
      *                             └─────┘└─────┘    └─────┘└─────┘
      */
     [LY_FN2] = LAYOUT( \
-    KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,    KC_F6,          KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12, \
-    _______, XXXXXXX, XXXXXXX, XXXXXXX, KC_LCTRL, XXXXXXX,        KC_HOME, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, \
-    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,        XXXXXXX, KC_END,  KC_PGDN, KC_PGUP, KC_LSFT, KC_PSCREEN, \
-                               _______, _______,  _______,        _______, _______, _______ \
+    KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,    KC_F6,      KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12, \
+    _______, XXXXXXX, XXXXXXX, XXXXXXX, KC_LCTRL, XXXXXXX,    KC_HOME, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, \
+    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_PSCREEN, XXXXXXX, KC_END,  KC_PGDN, KC_PGUP, XXXXXXX, _______, \
+                               _______, _______,  _______,    _______, _______, _______ \
     ),
 
     /* fn3 - numbers and media
@@ -134,10 +137,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                             └─────┘└─────┘    └─────┘└─────┘
      */
     [LY_FN3] = LAYOUT( \
-    KC_PWR,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, SP_GAME,         XXXXXXX, KC_7,    KC_8,   KC_9, KC_MINS, _______, \
-    _______, XXXXXXX, KC_MPLY, KC_MPRV, KC_MNXT, XXXXXXX,         XXXXXXX, KC_4,    KC_5,   KC_6, KC_DOT,  _______, \
-    KC_WAKE, XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU, XXXXXXX,         XXXXXXX, KC_1,    KC_2,   KC_3, KC_0,    _______, \
-                               _______, _______, _______,         KC_0 ,   _______, _______ \
+    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, SP_GAME, XXXXXXX, KC_7,    KC_8,   KC_9, KC_MINS, _______, \
+    _______, XXXXXXX, KC_MPLY, KC_MPRV, KC_MNXT, XXXXXXX, XXXXXXX, KC_4,    KC_5,   KC_6, KC_DOT,  _______, \
+    _______, XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU, XXXXXXX, XXXXXXX, KC_1,    KC_2,   KC_3, KC_0,    _______, \
+                               _______, _______, _______, KC_0 ,   _______, _______ \
     )
 };
 
