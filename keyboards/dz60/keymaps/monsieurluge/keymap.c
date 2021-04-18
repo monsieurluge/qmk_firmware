@@ -45,11 +45,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    */
 
   [_BASE] = LAYOUT_b_4_10(
-      KC_ESC,  FR_AMP,  FR_EACU, FR_QUOT, FR_APOS,  FR_LPRN,  FR_MINS, FR_EGRV, FR_UNDS, FR_CCED, FR_AGRV, FR_RPRN, FR_EQL,  KC_BSPC,
+      KC_ESC,  FR_AMP,  FR_EACU, FR_DQUO, FR_QUOT,  FR_LPRN,  FR_MINS, FR_EGRV, FR_UNDS, FR_CCED, FR_AGRV, FR_RPRN, FR_EQL,  KC_BSPC,
       KC_TAB,  FR_A,    FR_Z,    FR_E,    FR_R,     FR_T,     FR_Y,    FR_U,    FR_I,    FR_O,    FR_P,    FR_CIRC, FR_DLR,  KC_DEL,
       KC_CAPS, FR_Q,    FR_S,    FR_D,    FR_F,     FR_G,     FR_H,    FR_J,    FR_K,    FR_L,    FR_M,    FR_UGRV, KC_ENT,
       KC_LSFT, FR_W,    FR_X,    FR_C,    FR_V,     FR_B,     FR_N,    FR_COMM, FR_SCLN, FR_COLN, FR_EXLM, KC_UP,   KC_RSFT,
-      KC_LCTL, KC_LGUI, KC_LALT, KC_LSFT,             MO(_FN1), KC_SPC,                  KC_RALT, KC_LEFT, KC_DOWN, KC_RIGHT, FR_LABK
+      KC_LCTL, KC_LGUI, KC_LALT, KC_SPC,              MO(_FN1), KC_SPC,                  KC_RALT, KC_LEFT, KC_DOWN, KC_RIGHT, FR_LABK
       ),
 
   /* fn1
