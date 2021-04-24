@@ -144,7 +144,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, XXXXXXX, KC_MPLY, KC_MPRV, KC_MNXT, XXXXXXX, XXXXXXX, KC_4,    KC_5,   KC_6, KC_DOT,  _______, \
     _______, XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU, XXXXXXX, XXXXXXX, KC_1,    KC_2,   KC_3, KC_0,    _______, \
                                _______, _______, _______, KC_0 ,   _______, _______ \
-    )
+    ),
 
     /* fn4 - mouse
      *                   ┌─────┐                                      ┌─────┐
