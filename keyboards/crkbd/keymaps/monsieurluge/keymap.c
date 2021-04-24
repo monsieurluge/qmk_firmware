@@ -28,7 +28,7 @@ extern uint8_t is_master;
 #define PASTE   LCTL(KC_V)
 #define UNDO    LCTL(KC_Z)
 #define BACK    LALT(KC_LEFT)        // browser "back" shortcut
-#define BACK    LALT(KC_RIGHT)       // browser "forward" shortcut
+#define FORWARD LALT(KC_RIGHT)       // browser "forward" shortcut
 #define SP_GAME TG(LY_GAME)          // toggles the "gaming" layer
 #define SP_CTTB CTL_T(KC_TAB)        // tab or left control when held
 #define SP_CTEN CTL_T(KC_ENT)        // enter or left control when held
