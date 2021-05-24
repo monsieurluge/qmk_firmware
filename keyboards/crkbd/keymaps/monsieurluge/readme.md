@@ -23,6 +23,10 @@
 
 `bin/qmk compile --keyboard crkbd/rev1 --keymap monsieurluge`
 
+or
+
+`sudo util/docker_build.sh crkbd:monsieurluge`
+
 ### Flash
 
 Sometimes the Ubuntu _ModemManager_ service can cause issues. Stop it before flashing the microcontroler.
@@ -36,3 +40,4 @@ or
 ```
 sudo avrdude -p atmega32u4 -P /dev/ttyACM0 -c avr109 -U flash:w:crkbd_rev1_monsieurluge.hex
 ```
+
