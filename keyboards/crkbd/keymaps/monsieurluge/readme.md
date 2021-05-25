@@ -17,6 +17,11 @@
  - numbers and function keys
  - navigation cluster and media
 
+## Setup
+
+ - install Docker, make, avrdude
+ - run this command: `sudo make git-submodule`
+
 ## Build
 
 ### Firmware
@@ -40,4 +45,3 @@ or
 ```
 sudo avrdude -p atmega32u4 -P /dev/ttyACM0 -c avr109 -U flash:w:crkbd_rev1_monsieurluge.hex
 ```
-
