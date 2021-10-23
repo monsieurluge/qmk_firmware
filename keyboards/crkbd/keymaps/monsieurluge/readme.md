@@ -1,17 +1,17 @@
 # monsieurluge's CRKBD layout
 
-Design goals
+Design goals:
 
  - colemak dhm base layout
  - gaming layer mask
  - increase the accessibility to the main coding symbols
- - move the shift key to the thumb cluster in order to avoid moving the pinkies to write in uppercase -> less pain
+ - reduce the pain to write uppercase letters by moving the shift key to the thumb cluster
 
 # Temporary layers
 
- - symbols
- - numbers and function keys
- - navigation cluster and media
+ - **fn1** symbols
+ - **fn2** navigation cluster and media
+ - **fn3** numbers and function keys
 
 # Setup
 
