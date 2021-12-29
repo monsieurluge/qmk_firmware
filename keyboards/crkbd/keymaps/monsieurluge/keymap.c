@@ -5,9 +5,10 @@
 
 #define LY_CLMK 0
 #define LY_GAME 1
-#define LY_FN1  2
-#define LY_FN2  3
-#define LY_FN3  4
+#define LY_EDIT 2
+#define LY_FN1  3
+#define LY_FN2  4
+#define LY_FN3  5
 
 // special key shortcuts -------------------------------------------------------
 
@@ -18,6 +19,7 @@
 #define BACK___ LALT(KC_LEFT)        // browser "back" shortcut
 #define FORWARD LALT(KC_RIGHT)       // browser "forward" shortcut
 #define GAME___ TG(LY_GAME)          // toggles the "gaming" layer
+#define EDIT___ TG(LY_EDIT)          // toggles the "edit" layer
 #define CTTB___ CTL_T(KC_TAB)        // tab or left control when held
 #define CTEN___ CTL_T(KC_ENT)        // enter or left control when held
 #define SPSH___ MT(MOD_LSFT, KC_SPC) // space or left shift when held
@@ -72,6 +74,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                    KC_LCTRL, KC_SPC,  LY01___, KC_SPC,  LY02___, LY03___
     ),
 
+    /* editing "layer mask"
+     *                   ┌─────┐                                      ┌─────┐
+     *             ┌─────┤ --- ├─────┐                          ┌─────┤     ├─────┐
+     * ┌─────┬─────┤ --- ├─────┤ --- ├─────┐              ┌─────┤     ├─────┤     ├─────┬─────┐
+     * │ --- │ --- ├─────┤ --- ├─────┤ --- │              │     ├─────┤     ├─────┤     │     │
+     * ├─────┼─────┤ --- ├─────┤ --- ├─────┤              ├─────┤     ├─────┤     ├─────┼─────┤
+     * │ --- │ --- ├─────┤copy ├─────┤ --- │              │     ├─────┤     ├─────┤     │     │
+     * ├─────┼─────┤ cut ├─────┤ --- ├─────┤              ├─────┤     ├─────┤     ├─────┼─────┤
+     * │ --- │undo ├─────┘     └─────┤paste│              │     ├─────┘     └─────┤     │     │
+     * └─────┴─────┘        ┌─────┐  └─────┘              └─────┘  ┌─────┐        └─────┴─────┘
+     *                      │ fn3 │┌─────┐┌─────┐    ┌─────┐┌─────┐│     │
+     *                      └─────┘│ctrl ││shift│    │     ││     │└─────┘
+     *                             └─────┘└─────┘    └─────┘└─────┘
+     */
+    [LY_EDIT] = LAYOUT_split_3x6_3(
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, _______, _______, _______, _______, _______, _______,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, _______, _______, _______, _______, _______, _______,
+        XXXXXXX, UNDO___, CUT____, COPY___, XXXXXXX,  PASTE__, _______, _______, _______, _______, _______, _______,
+                                   _______, KC_LCTRL, _______, _______, _______, _______
+    ),
+
     /* fn1 - symbols
      *                   ┌─────┐                                      ┌─────┐
      *             ┌─────┤  #  ├─────┐                          ┌─────┤  *  ├─────┐
@@ -120,7 +143,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ┌─────┬─────┤     ├─────┤     ├─────┐              ┌─────┤  7  ├─────┤  9  ├─────┬─────┐
      * │     │     ├─────┤prev ├─────┤game │              │     ├─────┤  5  ├─────┤  -  │     │
      * ├─────┼─────┤play ├─────┤next ├─────┤              ├─────┤  4  ├─────┤  6  ├─────┼─────┤
-     * │     │     ├─────┤vol- ├─────┤     │              │     ├─────┤  2  ├─────┤  .  │     │
+     * │     │     ├─────┤vol- ├─────┤edit │              │     ├─────┤  2  ├─────┤  .  │     │
      * ├─────┼─────┤     ├─────┤vol+ ├─────┤              ├─────┤  1  ├─────┤  3  ├─────┼─────┤
      * │     │     ├─────┘     └─────┤     │              │     ├─────┘     └─────┤  0  │     │
      * └─────┴─────┘        ┌─────┐  └─────┘              └─────┘  ┌─────┐        └─────┴─────┘
@@ -130,7 +153,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [LY_FN3] = LAYOUT_split_3x6_3(
         _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, GAME___, XXXXXXX, KC_7,    KC_8,   KC_9, KC_MINS, _______,
-        _______, XXXXXXX, KC_MPLY, KC_MPRV, KC_MNXT, XXXXXXX, XXXXXXX, KC_4,    KC_5,   KC_6, KC_DOT,  _______,
+        _______, XXXXXXX, KC_MPLY, KC_MPRV, KC_MNXT, EDIT___, XXXXXXX, KC_4,    KC_5,   KC_6, KC_DOT,  _______,
         _______, XXXXXXX, XXXXXXX, KC_VOLD, KC_VOLU, XXXXXXX, XXXXXXX, KC_1,    KC_2,   KC_3, KC_0,    _______,
                                    _______, _______, _______, KC_0 ,   _______, _______
     )
@@ -148,6 +171,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     #define LS_BASE 0
     #define LS_GAME 2
+    #define LS_EDIT 4
 
     void oled_render_layer_state(void) {
         switch (layer_state) {
@@ -156,6 +180,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                 break;
             case LS_GAME:
                 oled_write_ln_P(PSTR("__GAME"), false);
+                break;
+            case LS_EDIT:
+                oled_write_ln_P(PSTR("__EDIT"), false);
                 break;
             default:
                 oled_write_ln_P(PSTR("__TEMPORARY"), false);
