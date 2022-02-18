@@ -44,15 +44,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * │ gui │  Z  ├─────┘     └─────┤  V  │              │  K  ├─────┘     └─────┤  /  │ alt │
      * └─────┴─────┘        ┌─────┐  └─────┘              └─────┘  ┌─────┐        └─────┴─────┘
      *                      │ fn3 │┌─────┐┌─────┐    ┌─────┐┌─────┐│ctrl │
-     *                      └─────┘│ fn1 ││shift│    │space││ fn2 │└─────┘
+     *                      └─────┘│ fn1 ││shift│    │sp/ct││ fn2 │└─────┘
      *                             └─────┘└─────┘    └─────┘└─────┘
      */
 
     [LY_CLMK] = LAYOUT_split_3x6_3(
-        KC_ESC,  KC_Q, KC_W, KC_F,    KC_P,    KC_B,    KC_J,   KC_L,    KC_U,    KC_Y,   KC_SCLN, KC_BSPC,
-        KC_TAB,  KC_A, KC_R, KC_S,    KC_T,    KC_G,    KC_M,   KC_N,    KC_E,    KC_I,   KC_O,    KC_ENT,
-        KC_LGUI, KC_Z, KC_X, KC_C,    KC_D,    KC_V,    KC_K,   KC_H,    KC_COMM, KC_DOT, KC_SLSH, KC_LALT,
-                             LY03___, LY01___, KC_LSFT, KC_SPC, LY02___, KC_LCTRL
+        KC_ESC,  KC_Q, KC_W, KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,   KC_SCLN, KC_BSPC,
+        KC_TAB,  KC_A, KC_R, KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,   KC_O,    KC_ENT,
+        KC_LGUI, KC_Z, KC_X, KC_C,    KC_D,    KC_V,    KC_K,    KC_H,    KC_COMM, KC_DOT, KC_SLSH, KC_LALT,
+                             LY03___, LY01___, KC_LSFT, CTSP___, LY02___, KC_LCTRL
     ),
 
     /* gaming "layer mask"
