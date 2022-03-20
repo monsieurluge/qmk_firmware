@@ -4,12 +4,10 @@
 // layers ----------------------------------------------------------------------
 
 #define LY_CLMK 0
-#define LY_GAME 1
-#define LY_EDIT 2
-#define LY_GAMQ 3
-#define LY_FN1  4
-#define LY_FN2  5
-#define LY_FN3  6
+#define LY_EDIT 1
+#define LY_FN1  2
+#define LY_FN2  3
+#define LY_FN3  4
 
 // special key shortcuts -------------------------------------------------------
 
@@ -19,8 +17,6 @@
 #define UNDO___ LCTL(KC_Z)
 #define BACK___ LALT(KC_LEFT)        // browser "back" shortcut
 #define FORWARD LALT(KC_RIGHT)       // browser "forward" shortcut
-#define GAME___ TG(LY_GAME)          // toggles the "gaming" layer
-#define GAMQ___ TG(LY_GAMQ)          // toggles the "qwerty gaming" layer
 #define EDIT___ TG(LY_EDIT)          // toggles the "edit" layer
 #define CTTB___ CTL_T(KC_TAB)        // tab or left control when held
 #define CTEN___ CTL_T(KC_ENT)        // enter or left control when held
@@ -55,27 +51,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                              LY03___, LY01___, KC_LSFT, CTSP___, LY02___, KC_LALT
     ),
 
-    /* gaming "layer mask"
-     *                   ┌─────┐                                      ┌─────┐
-     *             ┌─────┤     ├─────┐                          ┌─────┤     ├─────┐
-     * ┌─────┬─────┤     ├─────┤     ├─────┐              ┌─────┤     ├─────┤     ├─────┬─────┐
-     * │ esc │     ├─────┤     ├─────┤     │              │     ├─────┤     ├─────┤     │ bsp │
-     * ├─────┼─────┤     ├─────┤     ├─────┤              ├─────┤     ├─────┤     ├─────┼─────┤
-     * │ tab │     ├─────┤     ├─────┤     │              │     ├─────┤     ├─────┤     │enter│
-     * ├─────┼─────┤     ├─────┤     ├─────┤              ├─────┤     ├─────┤     ├─────┼─────┤
-     * │shift│     ├─────┘     └─────┤     │              │     ├─────┘     └─────┤     │ gui │
-     * └─────┴─────┘        ┌─────┐  └─────┘              └─────┘  ┌─────┐        └─────┴─────┘
-     *                      │ctrl │┌─────┐┌─────┐    ┌─────┐┌─────┐│ fn3 │
-     *                      └─────┘│space││ fn1 │    │space││ fn2 │└─────┘
-     *                             └─────┘└─────┘    └─────┘└─────┘
-     */
-    [LY_GAME] = LAYOUT_split_3x6_3(
-        KC_ESC,  _______, _______, _______,  _______, _______, _______, _______, _______, _______, _______, KC_BSPC,
-        KC_TAB,  _______, _______, _______,  _______, _______, _______, _______, _______, _______, _______, KC_ENT,
-        KC_LSFT, _______, _______, _______,  _______, _______, _______, _______, _______, _______, _______, KC_LGUI,
-                                   KC_LCTRL, KC_SPC,  LY01___, KC_SPC,  LY02___, LY03___
-    ),
-
     /* editing "layer mask"
      *                   ┌─────┐                                      ┌─────┐
      *             ┌─────┤ --- ├─────┐                          ┌─────┤     ├─────┐
@@ -95,27 +70,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, _______, _______, _______, _______, _______, _______,
         XXXXXXX, UNDO___, CUT____, COPY___, XXXXXXX,  PASTE__, _______, _______, _______, _______, _______, _______,
                                    _______, KC_LCTRL, _______, _______, _______, _______
-    ),
-
-    /* qwerty gaming "layer mask"
-     *                   ┌─────┐                                      ┌─────┐
-     *             ┌─────┤  E  ├─────┐                          ┌─────┤  I  ├─────┐
-     * ┌─────┬─────┤  W  ├─────┤  R  ├─────┐              ┌─────┤  U  ├─────┤  O  ├─────┬─────┐
-     * │ esc │  Q  ├─────┤  D  ├─────┤  T  │              │  Y  ├─────┤  K  ├─────┤  P  │ bsp │
-     * ├─────┼─────┤  S  ├─────┤  F  ├─────┤              ├─────┤  J  ├─────┤  L  ├─────┼─────┤
-     * │ tab │  A  ├─────┤  C  ├─────┤  G  │              │  H  ├─────┤  ,  ├─────┤  ;  │enter│
-     * ├─────┼─────┤  X  ├─────┤  V  ├─────┤              ├─────┤  M  ├─────┤  .  ├─────┼─────┤
-     * │shift│  Z  ├─────┘     └─────┤  B  │              │  N  ├─────┘     └─────┤  /  │ gui │
-     * └─────┴─────┘        ┌─────┐  └─────┘              └─────┘  ┌─────┐        └─────┴─────┘
-     *                      │ctrl │┌─────┐┌─────┐    ┌─────┐┌─────┐│ fn3 │
-     *                      └─────┘│space││ fn1 │    │space││ fn2 │└─────┘
-     *                             └─────┘└─────┘    └─────┘└─────┘
-     */
-    [LY_GAMQ] = LAYOUT_split_3x6_3(
-        KC_ESC,  KC_Q, KC_W, KC_E, KC_R,     KC_T,   KC_Y,    KC_U,   KC_I,    KC_O,   KC_P,    KC_BSPC,
-        KC_TAB,  KC_A, KC_S, KC_D, KC_F,     KC_G,   KC_H,    KC_J,   KC_K,    KC_L,   KC_SCLN, KC_ENT,
-        KC_LSFT, KC_Z, KC_X, KC_C, KC_V,     KC_B,   KC_N,    KC_M,   KC_COMM, KC_DOT, KC_SLSH, KC_LGUI,
-                                   KC_LCTRL, KC_SPC, LY01___, KC_SPC, LY02___, LY03___
     ),
 
     /* fn1 - symbols
@@ -164,20 +118,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                   ┌─────┐                                      ┌─────┐
      *             ┌─────┤     ├─────┐                          ┌─────┤  8  ├─────┐
      * ┌─────┬─────┤     ├─────┤     ├─────┐              ┌─────┤  7  ├─────┤  9  ├─────┬─────┐
-     * │     │     ├─────┤prev ├─────┤game │              │     ├─────┤  5  ├─────┤  -  │     │
+     * │     │     ├─────┤prev ├─────┤edit │              │     ├─────┤  5  ├─────┤  -  │     │
      * ├─────┼─────┤play ├─────┤next ├─────┤              ├─────┤  4  ├─────┤  6  ├─────┼─────┤
-     * │     │     ├─────┤vol- ├─────┤edit │              │     ├─────┤  2  ├─────┤  .  │     │
+     * │     │     ├─────┤vol- ├─────┤     │              │     ├─────┤  2  ├─────┤  .  │     │
      * ├─────┼─────┤     ├─────┤vol+ ├─────┤              ├─────┤  1  ├─────┤  3  ├─────┼─────┤
-     * │     │     ├─────┘     └─────┤gamq │              │     ├─────┘     └─────┤  0  │     │
+     * │     │     ├─────┘     └─────┤     │              │     ├─────┘     └─────┤  0  │     │
      * └─────┴─────┘        ┌─────┐  └─────┘              └─────┘  ┌─────┐        └─────┴─────┘
      *                      │     │┌─────┐┌─────┐    ┌─────┐┌─────┐│     │
      *                      └─────┘│     ││     │    │  0  ││     │└─────┘
      *                             └─────┘└─────┘    └─────┘└─────┘
      */
     [LY_FN3] = LAYOUT_split_3x6_3(
-        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, GAME___, XXXXXXX, KC_7,    KC_8,   KC_9, KC_MINS, _______,
-        _______, XXXXXXX, KC_MPLY, KC_MPRV, KC_MNXT, EDIT___, XXXXXXX, KC_4,    KC_5,   KC_6, KC_DOT,  _______,
-        _______, XXXXXXX, XXXXXXX, KC_VOLD, KC_VOLU, GAMQ___, XXXXXXX, KC_1,    KC_2,   KC_3, KC_0,    _______,
+        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, EDIT___, XXXXXXX, KC_7,    KC_8,   KC_9, KC_MINS, _______,
+        _______, XXXXXXX, KC_MPLY, KC_MPRV, KC_MNXT, _______, XXXXXXX, KC_4,    KC_5,   KC_6, KC_DOT,  _______,
+        _______, XXXXXXX, XXXXXXX, KC_VOLD, KC_VOLU, _______, XXXXXXX, KC_1,    KC_2,   KC_3, KC_0,    _______,
                                    _______, _______, _______, KC_0 ,   _______, _______
     )
 };
@@ -193,23 +147,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     }
 
     #define LS_BASE 0
-    #define LS_GAME 2
-    #define LS_EDIT 4
-    #define LS_GAMQ 8
+    #define LS_EDIT 2
 
     void oled_render_layer_state(void) {
         switch (layer_state) {
             case LS_BASE:
                 oled_write_ln_P(PSTR("__BASE"), false);
                 break;
-            case LS_GAME:
-                oled_write_ln_P(PSTR("__GAME"), false);
-                break;
             case LS_EDIT:
                 oled_write_ln_P(PSTR("__EDIT"), false);
-                break;
-            case LS_GAMQ:
-                oled_write_ln_P(PSTR("__GAME_QW"), false);
                 break;
             default:
                 oled_write_ln_P(PSTR("__TEMPORARY"), false);
