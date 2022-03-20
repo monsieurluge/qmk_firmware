@@ -3,7 +3,6 @@
 Design goals:
 
  - colemak dhm base layout
- - gaming layer mask
  - increase the accessibility to the main coding symbols
  - reduce the pain to write uppercase letters by moving the shift key to the thumb cluster
 
