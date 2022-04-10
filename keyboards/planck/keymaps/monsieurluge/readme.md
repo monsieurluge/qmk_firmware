@@ -8,6 +8,7 @@
 # Permanent layers
 
  - colemak DHm
+ - qwerty "gaming"
 
 # Temporary layers
 
