@@ -3,25 +3,16 @@
 
 // layers ----------------------------------------------------------------------
 
-#define LY_CLMK 0
-#define LY_EDIT 1
-#define LY_FN1  2
-#define LY_FN2  3
-#define LY_FN3  4
+#define LY_BASE 0
+#define LY_FN1  1
+#define LY_FN2  2
+#define LY_FN3  3
 
 // special key shortcuts -------------------------------------------------------
 
-#define CUT____ LCTL(KC_X)
-#define COPY___ LCTL(KC_C)
-#define PASTE__ LCTL(KC_V)
-#define UNDO___ LCTL(KC_Z)
-#define BACK___ LALT(KC_LEFT)        // browser "back" shortcut
-#define FORWARD LALT(KC_RIGHT)       // browser "forward" shortcut
-#define EDIT___ TG(LY_EDIT)          // toggles the "edit" layer
-#define CTTB___ CTL_T(KC_TAB)        // tab or left control when held
-#define CTEN___ CTL_T(KC_ENT)        // enter or left control when held
-#define SPSH___ MT(MOD_LSFT, KC_SPC) // space or left shift when held
 #define CTSP___ CTL_T(KC_SPC)        // space or left control when held
+#define HOME___ LGUI(KC_LEFT)        // "home" behaviour on Mac
+#define END____ LGUI(KC_RGHT)        // "end" behaviour on Mac
 #define LY01___ MO(LY_FN1)
 #define LY02___ MO(LY_FN2)
 #define LY03___ MO(LY_FN3)
@@ -29,47 +20,25 @@
 // layouts ---------------------------------------------------------------------
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    /* colemak mod DHm
+    /* qwerty
      *                   ┌─────┐                                      ┌─────┐
-     *             ┌─────┤  F  ├─────┐                          ┌─────┤  U  ├─────┐
-     * ┌─────┬─────┤  W  ├─────┤  P  ├─────┐              ┌─────┤  L  ├─────┤  Y  ├─────┬─────┐
-     * │ esc │  Q  ├─────┤  S  ├─────┤  B  │              │  J  ├─────┤  E  ├─────┤  ;  │ bsp │
-     * ├─────┼─────┤  R  ├─────┤  T  ├─────┤              ├─────┤  N  ├─────┤  I  ├─────┼─────┤
-     * │ tab │  A  ├─────┤  C  ├─────┤  G  │              │  M  ├─────┤  ,  ├─────┤  O  │enter│
-     * ├─────┼─────┤  X  ├─────┤  D  ├─────┤              ├─────┤  H  ├─────┤  .  ├─────┼─────┤
-     * │ gui │  Z  ├─────┘     └─────┤  V  │              │  K  ├─────┘     └─────┤  /  │ alt │
+     *             ┌─────┤  E  ├─────┐                          ┌─────┤  I  ├─────┐
+     * ┌─────┬─────┤  W  ├─────┤  R  ├─────┐              ┌─────┤  U  ├─────┤  O  ├─────┬─────┐
+     * │ esc │  Q  ├─────┤  D  ├─────┤  T  │              │  Y  ├─────┤  K  ├─────┤  P  │ bsp │
+     * ├─────┼─────┤  S  ├─────┤  F  ├─────┤              ├─────┤  J  ├─────┤  L  ├─────┼─────┤
+     * │ tab │  A  ├─────┤  C  ├─────┤  G  │              │  H  ├─────┤  ,  ├─────┤  ;  │enter│
+     * ├─────┼─────┤  X  ├─────┤  V  ├─────┤              ├─────┤  M  ├─────┤  .  ├─────┼─────┤
+     * │shift│  Z  ├─────┘     └─────┤  B  │              │  N  ├─────┘     └─────┤  /  │shift│
      * └─────┴─────┘        ┌─────┐  └─────┘              └─────┘  ┌─────┐        └─────┴─────┘
-     *                      │ fn3 │┌─────┐┌─────┐    ┌─────┐┌─────┐│ alt │
-     *                      └─────┘│ fn1 ││shift│    │sp/ct││ fn2 │└─────┘
+     *                      │ gui │┌─────┐┌─────┐    ┌─────┐┌─────┐│ gui │
+     *                      └─────┘│ fn3 ││ fn1 │    │sp/ct││ fn2 │└─────┘
      *                             └─────┘└─────┘    └─────┘└─────┘
      */
-
-    [LY_CLMK] = LAYOUT_split_3x6_3(
-        KC_ESC,  KC_Q, KC_W, KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,   KC_SCLN, KC_BSPC,
-        KC_TAB,  KC_A, KC_R, KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,   KC_O,    KC_ENT,
-        KC_LGUI, KC_Z, KC_X, KC_C,    KC_D,    KC_V,    KC_K,    KC_H,    KC_COMM, KC_DOT, KC_SLSH, KC_LALT,
-                             LY03___, LY01___, KC_LSFT, CTSP___, LY02___, KC_LALT
-    ),
-
-    /* editing "layer mask"
-     *                   ┌─────┐                                      ┌─────┐
-     *             ┌─────┤ --- ├─────┐                          ┌─────┤     ├─────┐
-     * ┌─────┬─────┤ --- ├─────┤ --- ├─────┐              ┌─────┤     ├─────┤     ├─────┬─────┐
-     * │ --- │ --- ├─────┤ --- ├─────┤ --- │              │     ├─────┤     ├─────┤     │     │
-     * ├─────┼─────┤ --- ├─────┤ --- ├─────┤              ├─────┤     ├─────┤     ├─────┼─────┤
-     * │ --- │ --- ├─────┤copy ├─────┤ --- │              │     ├─────┤     ├─────┤     │     │
-     * ├─────┼─────┤ cut ├─────┤ --- ├─────┤              ├─────┤     ├─────┤     ├─────┼─────┤
-     * │ --- │undo ├─────┘     └─────┤paste│              │     ├─────┘     └─────┤     │     │
-     * └─────┴─────┘        ┌─────┐  └─────┘              └─────┘  ┌─────┐        └─────┴─────┘
-     *                      │ fn3 │┌─────┐┌─────┐    ┌─────┐┌─────┐│     │
-     *                      └─────┘│ctrl ││shift│    │     ││     │└─────┘
-     *                             └─────┘└─────┘    └─────┘└─────┘
-     */
-    [LY_EDIT] = LAYOUT_split_3x6_3(
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, _______, _______, _______, _______, _______, _______,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, _______, _______, _______, _______, _______, _______,
-        XXXXXXX, UNDO___, CUT____, COPY___, XXXXXXX,  PASTE__, _______, _______, _______, _______, _______, _______,
-                                   _______, KC_LCTRL, _______, _______, _______, _______
+    [LY_BASE] = LAYOUT_split_3x6_3(
+        KC_ESC,    KC_Q, KC_W, KC_E,  KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,    KC_BSPC,
+        KC_TAB,    KC_A, KC_S, KC_D,  KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,   KC_SCLN, KC_ENT,
+        KC_LSHIFT, KC_Z, KC_X, KC_C,  KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT, KC_SLSH, KC_LSHIFT,
+                             KC_LGUI, LY03___, LY01___, CTSP___, LY02___, KC_RGUI
     ),
 
     /* fn1 - symbols
@@ -80,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ├─────┼─────┤  =  ├─────┤  {  ├─────┤              ├─────┤  }  ├─────┤  _  ├─────┼─────┤
      * │     │  '  ├─────┤     ├─────┤  "  │              │  |  ├─────┤  €  ├─────┤  `  │     │
      * ├─────┼─────┤     ├─────┤  [  ├─────┤              ├─────┤  ]  ├─────┤     ├─────┼─────┤
-     * │menu │     ├─────┘     └─────┤ctrl │              │     ├─────┘     └─────┤  \  │     │
+     * │     │     ├─────┘     └─────┤ctrl │              │     ├─────┘     └─────┤  \  │     │
      * └─────┴─────┘        ┌─────┐  └─────┘              └─────┘  ┌─────┐        └─────┴─────┘
      *                      │     │┌─────┐┌─────┐    ┌─────┐┌─────┐│     │
      *                      └─────┘│     ││     │    │     ││     │└─────┘
@@ -89,7 +58,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LY_FN1] = LAYOUT_split_3x6_3(
         KC_TILD, KC_EXLM, KC_AT,    KC_HASH, KC_DLR,  KC_PERC,  KC_CIRC, KC_AMPR, KC_ASTR,    KC_LPRN, KC_RPRN, KC_DEL,
         _______, KC_QUOT, KC_EQUAL, KC_PLUS, KC_LCBR, KC_DQT,   KC_PIPE, KC_RCBR, KC_MINS,    KC_UNDS, KC_GRV,  _______,
-        KC_APP,  _______, _______,  _______, KC_LBRC, KC_LCTRL, XXXXXXX, KC_RBRC, RALT(KC_5), XXXXXXX, KC_BSLS, _______,
+        _______, XXXXXXX, XXXXXXX,  XXXXXXX, KC_LBRC, KC_LCTRL, XXXXXXX, KC_RBRC, RALT(KC_5), XXXXXXX, KC_BSLS, _______,
                                     _______, _______, _______,  _______, _______, _______
     ),
 
@@ -99,40 +68,40 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ┌─────┬─────┤ F3  ├─────┤ F5  ├─────┐              ┌─────┤ F8  ├─────┤ F10 ├─────┬─────┐
      * │ F1  │ F2  ├─────┤shift├─────┤ F6  │              │ F7  ├─────┤down ├─────┤ F11 │ F12 │
      * ├─────┼─────┤     ├─────┤ctrl ├─────┤              ├─────┤left ├─────┤ up  ├─────┼─────┤
-     * │     │     ├─────┤     ├─────┤     │              │home ├─────┤pgdwn├─────┤right│     │
-     * ├─────┼─────┤     ├─────┤     ├─────┤              ├─────┤ end ├─────┤pgup ├─────┼─────┤
-     * │     │     ├─────┘     └─────┤ptscr│              │back ├─────┘     └─────┤     │     │
+     * │     │     ├─────┤     ├─────┤     │              │     ├─────┤pgdwn├─────┤right│     │
+     * ├─────┼─────┤     ├─────┤     ├─────┤              ├─────┤home ├─────┤pgup ├─────┼─────┤
+     * │     │     ├─────┘     └─────┤     │              │     ├─────┘     └─────┤ end │     │
      * └─────┴─────┘        ┌─────┐  └─────┘              └─────┘  ┌─────┐        └─────┴─────┘
-     *                      │     │┌─────┐┌─────┐    ┌─────┐┌─────┐│     │
+     *                      │ alt │┌─────┐┌─────┐    ┌─────┐┌─────┐│     │
      *                      └─────┘│     ││     │    │     ││     │└─────┘
      *                             └─────┘└─────┘    └─────┘└─────┘
      */
     [LY_FN2] = LAYOUT_split_3x6_3(
-        KC_F1,   KC_F2,   KC_F3,   KC_F4,     KC_F5,    KC_F6,      KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,
-        _______, XXXXXXX, XXXXXXX, KC_LSHIFT, KC_LCTRL, XXXXXXX,    KC_HOME, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,
-        _______, XXXXXXX, XXXXXXX, XXXXXXX,   XXXXXXX,  KC_PSCREEN, BACK___, KC_END,  KC_PGDN, KC_PGUP, XXXXXXX, _______,
-                                   _______,   _______,  _______,    _______, _______, _______
+        KC_F1,   KC_F2,   KC_F3,   KC_F4,     KC_F5,    KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,
+        _______, XXXXXXX, XXXXXXX, KC_LSHIFT, KC_LCTRL, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,
+        _______, XXXXXXX, XXXXXXX, XXXXXXX,   XXXXXXX,  XXXXXXX, XXXXXXX, HOME___, KC_PGDN, KC_PGUP, END____, _______,
+                                   KC_LALT,   _______,  _______, _______, _______, _______
     ),
 
     /* fn3 - numbers and media
      *                   ┌─────┐                                      ┌─────┐
      *             ┌─────┤     ├─────┐                          ┌─────┤  8  ├─────┐
      * ┌─────┬─────┤     ├─────┤     ├─────┐              ┌─────┤  7  ├─────┤  9  ├─────┬─────┐
-     * │     │     ├─────┤prev ├─────┤edit │              │     ├─────┤  5  ├─────┤  -  │     │
+     * │     │     ├─────┤prev ├─────┤     │              │     ├─────┤  5  ├─────┤  -  │     │
      * ├─────┼─────┤play ├─────┤next ├─────┤              ├─────┤  4  ├─────┤  6  ├─────┼─────┤
-     * │     │     ├─────┤vol- ├─────┤     │              │     ├─────┤  2  ├─────┤  .  │     │
+     * │     │     ├─────┤vol- ├─────┤     │              │     ├─────┤  2  ├─────┤  0  │     │
      * ├─────┼─────┤     ├─────┤vol+ ├─────┤              ├─────┤  1  ├─────┤  3  ├─────┼─────┤
-     * │     │     ├─────┘     └─────┤     │              │     ├─────┘     └─────┤  0  │     │
+     * │     │     ├─────┘     └─────┤     │              │     ├─────┘     └─────┤  .  │     │
      * └─────┴─────┘        ┌─────┐  └─────┘              └─────┘  ┌─────┐        └─────┴─────┘
-     *                      │     │┌─────┐┌─────┐    ┌─────┐┌─────┐│     │
+     *                      │     │┌─────┐┌─────┐    ┌─────┐┌─────┐│ alt │
      *                      └─────┘│     ││     │    │  0  ││     │└─────┘
      *                             └─────┘└─────┘    └─────┘└─────┘
      */
     [LY_FN3] = LAYOUT_split_3x6_3(
-        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, EDIT___, XXXXXXX, KC_7,    KC_8,   KC_9, KC_MINS, _______,
-        _______, XXXXXXX, KC_MPLY, KC_MPRV, KC_MNXT, _______, XXXXXXX, KC_4,    KC_5,   KC_6, KC_DOT,  _______,
-        _______, XXXXXXX, XXXXXXX, KC_VOLD, KC_VOLU, _______, XXXXXXX, KC_1,    KC_2,   KC_3, KC_0,    _______,
-                                   _______, _______, _______, KC_0 ,   _______, _______
+        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_7,    KC_8,   KC_9, KC_MINS, _______,
+        _______, XXXXXXX, KC_MPLY, KC_MPRV, KC_MNXT, XXXXXXX, XXXXXXX, KC_4,    KC_5,   KC_6, KC_0,    _______,
+        _______, XXXXXXX, XXXXXXX, KC_VOLD, KC_VOLU, XXXXXXX, XXXXXXX, KC_1,    KC_2,   KC_3, KC_DOT,  _______,
+                                   _______, _______, _______, KC_0 ,   _______, KC_RALT
     )
 };
 
@@ -146,21 +115,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       return rotation;
     }
 
-    #define LS_BASE 0
-    #define LS_EDIT 2
-
     void oled_render_layer_state(void) {
-        switch (layer_state) {
-            case LS_BASE:
-                oled_write_ln_P(PSTR("__BASE"), false);
-                break;
-            case LS_EDIT:
-                oled_write_ln_P(PSTR("__EDIT"), false);
-                break;
-            default:
-                oled_write_ln_P(PSTR("__TEMPORARY"), false);
-                break;
-        }
+        // does not work as expected but the result is fun
+        oled_write_ln_P(PSTR("(╯°□°)╯︵ ┻━┻"), false);
     }
 
     void oled_task_user(void) {
