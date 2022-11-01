@@ -2,9 +2,8 @@
 
 Design goals:
 
- - colemak dhm base layout
  - increase the accessibility to the main coding symbols
- - reduce the pain to write uppercase letters by moving the shift key to the thumb cluster
+ - reduce the pain to write uppercase letters by moving the shift key to the thumb cluster (temporarily not the case)
 
 # Temporary layers
 
@@ -21,6 +20,10 @@ Prerequisites:
  - avrdude
 
 Then, run this command: `sudo make git-submodule`
+
+## on MacOS
+
+Simply install qmk via _Brew_.
 
 # Build
 
@@ -40,4 +43,14 @@ or
 
 ```bash
 sudo avrdude -p atmega32u4 -P /dev/ttyACM0 -c avr109 -U flash:w:crkbd_rev1_monsieurluge.hex
+```
+
+# Flash
+
+## on MacOS
+
+Run the command:
+
+```bash
+qmk flash --keyboard crkbd/rev1 --keymap monsieurluge
 ```
