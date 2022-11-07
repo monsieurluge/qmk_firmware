@@ -4,15 +4,17 @@
 // layers ----------------------------------------------------------------------
 
 #define LY_BASE 0
-#define LY_FN1  1
-#define LY_FN2  2
-#define LY_FN3  3
+#define LY_GAME 1
+#define LY_FN1  2
+#define LY_FN2  3
+#define LY_FN3  4
 
 // special key shortcuts -------------------------------------------------------
 
 #define CTSP___ CTL_T(KC_SPC)        // space or left control when held
 #define HOME___ LGUI(KC_LEFT)        // "home" behaviour on Mac
 #define END____ LGUI(KC_RGHT)        // "end" behaviour on Mac
+#define GAME___ TG(LY_GAME)          // toggles the GAMING layer
 #define LY01___ MO(LY_FN1)
 #define LY02___ MO(LY_FN2)
 #define LY03___ MO(LY_FN3)
@@ -39,6 +41,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,    KC_A, KC_S, KC_D,  KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,   KC_SCLN, KC_ENT,
         KC_LSHIFT, KC_Z, KC_X, KC_C,  KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT, KC_SLSH, KC_LSHIFT,
                              KC_LGUI, LY03___, LY01___, CTSP___, LY02___, KC_RGUI
+    ),
+
+    /* gaming layer
+     *                   ┌─────┐                                      ┌─────┐
+     *             ┌─────┤  E  ├─────┐                          ┌─────┤  I  ├─────┐
+     * ┌─────┬─────┤  W  ├─────┤  R  ├─────┐              ┌─────┤  U  ├─────┤  O  ├─────┬─────┐
+     * │ esc │  Q  ├─────┤  D  ├─────┤  T  │              │  Y  ├─────┤  K  ├─────┤  P  │ bsp │
+     * ├─────┼─────┤  S  ├─────┤  F  ├─────┤              ├─────┤  J  ├─────┤  L  ├─────┼─────┤
+     * │ tab │  A  ├─────┤  C  ├─────┤  G  │              │  H  ├─────┤  ,  ├─────┤  ;  │enter│
+     * ├─────┼─────┤  X  ├─────┤  V  ├─────┤              ├─────┤  M  ├─────┤  .  ├─────┼─────┤
+     * │shift│  Z  ├─────┘     └─────┤  B  │              │  N  ├─────┘     └─────┤  /  │shift│
+     * └─────┴─────┘        ┌─────┐  └─────┘              └─────┘  ┌─────┐        └─────┴─────┘
+     *                      │ ctl │┌─────┐┌─────┐    ┌─────┐┌─────┐│ gui │
+     *                      └─────┘│ alt ││space│    │sp/ct││ fn2 │└─────┘
+     *                             └─────┘└─────┘    └─────┘└─────┘
+     */
+    [LY_GAME] = LAYOUT_split_3x6_3(
+        KC_ESC,    KC_Q, KC_W, KC_E,  KC_R,    KC_T,   KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,    KC_BSPC,
+        KC_TAB,    KC_A, KC_S, KC_D,  KC_F,    KC_G,   KC_H,    KC_J,    KC_K,    KC_L,   KC_SCLN, KC_ENT,
+        KC_LSHIFT, KC_Z, KC_X, KC_C,  KC_V,    KC_B,   KC_N,    KC_M,    KC_COMM, KC_DOT, KC_SLSH, KC_LSHIFT,
+                             KC_LCTL, KC_LALT, KC_SPC, CTSP___, LY02___, KC_RGUI
     ),
 
     /* fn1 - symbols
@@ -70,7 +93,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ├─────┼─────┤     ├─────┤ctrl ├─────┤              ├─────┤left ├─────┤ up  ├─────┼─────┤
      * │     │     ├─────┤     ├─────┤     │              │     ├─────┤pgdwn├─────┤right│     │
      * ├─────┼─────┤     ├─────┤     ├─────┤              ├─────┤home ├─────┤pgup ├─────┼─────┤
-     * │     │     ├─────┘     └─────┤     │              │     ├─────┘     └─────┤ end │     │
+     * │     │     ├─────┘     └─────┤GAME │              │     ├─────┘     └─────┤ end │     │
      * └─────┴─────┘        ┌─────┐  └─────┘              └─────┘  ┌─────┐        └─────┴─────┘
      *                      │ alt │┌─────┐┌─────┐    ┌─────┐┌─────┐│     │
      *                      └─────┘│     ││     │    │     ││     │└─────┘
@@ -79,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LY_FN2] = LAYOUT_split_3x6_3(
         KC_F1,   KC_F2,   KC_F3,   KC_F4,     KC_F5,    KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,
         _______, XXXXXXX, XXXXXXX, KC_LSHIFT, KC_LCTRL, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,
-        _______, XXXXXXX, XXXXXXX, XXXXXXX,   XXXXXXX,  XXXXXXX, XXXXXXX, HOME___, KC_PGDN, KC_PGUP, END____, _______,
+        _______, XXXXXXX, XXXXXXX, XXXXXXX,   XXXXXXX,  GAME___, XXXXXXX, HOME___, KC_PGDN, KC_PGUP, END____, _______,
                                    KC_LALT,   _______,  _______, _______, _______, _______
     ),
 
