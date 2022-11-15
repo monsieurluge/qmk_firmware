@@ -95,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ├─────┼─────┤     ├─────┤     ├─────┤              ├─────┤home ├─────┤pgup ├─────┼─────┤
      * │     │     ├─────┘     └─────┤GAME │              │     ├─────┘     └─────┤ end │     │
      * └─────┴─────┘        ┌─────┐  └─────┘              └─────┘  ┌─────┐        └─────┴─────┘
-     *                      │ alt │┌─────┐┌─────┐    ┌─────┐┌─────┐│     │
+     *                      │     │┌─────┐┌─────┐    ┌─────┐┌─────┐│     │
      *                      └─────┘│     ││     │    │     ││     │└─────┘
      *                             └─────┘└─────┘    └─────┘└─────┘
      */
@@ -103,7 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_F1,   KC_F2,   KC_F3,   KC_F4,     KC_F5,    KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,
         _______, XXXXXXX, XXXXXXX, KC_LSHIFT, KC_LCTRL, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,
         _______, XXXXXXX, XXXXXXX, XXXXXXX,   XXXXXXX,  GAME___, XXXXXXX, HOME___, KC_PGDN, KC_PGUP, END____, _______,
-                                   KC_LALT,   _______,  _______, _______, _______, _______
+                                   _______,   _______,  _______, _______, _______, _______
     ),
 
     /* fn3 - numbers and media
@@ -116,7 +116,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ├─────┼─────┤     ├─────┤vol+ ├─────┤              ├─────┤  1  ├─────┤  3  ├─────┼─────┤
      * │     │     ├─────┘     └─────┤     │              │     ├─────┘     └─────┤  .  │     │
      * └─────┴─────┘        ┌─────┐  └─────┘              └─────┘  ┌─────┐        └─────┴─────┘
-     *                      │     │┌─────┐┌─────┐    ┌─────┐┌─────┐│ alt │
+     *                      │     │┌─────┐┌─────┐    ┌─────┐┌─────┐│     │
      *                      └─────┘│     ││     │    │  0  ││     │└─────┘
      *                             └─────┘└─────┘    └─────┘└─────┘
      */
@@ -124,7 +124,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_7,    KC_8,   KC_9, KC_MINS, _______,
         _______, XXXXXXX, KC_MPLY, KC_MPRV, KC_MNXT, XXXXXXX, XXXXXXX, KC_4,    KC_5,   KC_6, KC_0,    _______,
         _______, XXXXXXX, XXXXXXX, KC_VOLD, KC_VOLU, XXXXXXX, XXXXXXX, KC_1,    KC_2,   KC_3, KC_DOT,  _______,
-                                   _______, _______, _______, KC_0 ,   _______, KC_RALT
+                                   _______, _______, _______, KC_0 ,   _______, _______
     )
 };
 
