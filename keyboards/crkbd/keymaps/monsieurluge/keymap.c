@@ -138,9 +138,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       return rotation;
     }
 
+    #define LS_BASE 0
+    #define LS_GAME 2
+
     void oled_render_layer_state(void) {
-        // does not work as expected but the result is fun
-        oled_write_ln_P(PSTR("(╯°□°)╯︵ ┻━┻"), false);
+        switch (layer_state) {
+            case LS_BASE:
+                oled_write_ln_P(PSTR("stay focused!"), false);
+                break;
+            case LS_GAME:
+                oled_write_ln_P(PSTR("wooo!"), false);
+                break;
+            default:
+                // display nothing when a temporary layer is active
+                break;
+        }
     }
 
     void oled_task_user(void) {
