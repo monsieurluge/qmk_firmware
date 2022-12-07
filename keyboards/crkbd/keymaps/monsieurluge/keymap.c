@@ -72,17 +72,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ├─────┼─────┤  =  ├─────┤  {  ├─────┤              ├─────┤  }  ├─────┤  _  ├─────┼─────┤
      * │     │  '  ├─────┤     ├─────┤  "  │              │  |  ├─────┤  €  ├─────┤  `  │     │
      * ├─────┼─────┤     ├─────┤  [  ├─────┤              ├─────┤  ]  ├─────┤     ├─────┼─────┤
-     * │     │     ├─────┘     └─────┤ctrl │              │     ├─────┘     └─────┤  \  │     │
+     * │     │     ├─────┘     └─────┤     │              │     ├─────┘     └─────┤  \  │     │
      * └─────┴─────┘        ┌─────┐  └─────┘              └─────┘  ┌─────┐        └─────┴─────┘
      *                      │     │┌─────┐┌─────┐    ┌─────┐┌─────┐│     │
      *                      └─────┘│     ││     │    │     ││     │└─────┘
      *                             └─────┘└─────┘    └─────┘└─────┘
      */
     [LY_FN1] = LAYOUT_split_3x6_3(
-        KC_TILD, KC_EXLM, KC_AT,    KC_HASH, KC_DLR,  KC_PERC,  KC_CIRC, KC_AMPR, KC_ASTR,    KC_LPRN, KC_RPRN, KC_DEL,
-        _______, KC_QUOT, KC_EQUAL, KC_PLUS, KC_LCBR, KC_DQT,   KC_PIPE, KC_RCBR, KC_MINS,    KC_UNDS, KC_GRV,  _______,
-        _______, XXXXXXX, XXXXXXX,  XXXXXXX, KC_LBRC, KC_LCTRL, XXXXXXX, KC_RBRC, RALT(KC_5), XXXXXXX, KC_BSLS, _______,
-                                    _______, _______, _______,  _______, _______, _______
+        KC_TILD, KC_EXLM, KC_AT,    KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR,    KC_LPRN, KC_RPRN, KC_DEL,
+        _______, KC_QUOT, KC_EQUAL, KC_PLUS, KC_LCBR, KC_DQT,  KC_PIPE, KC_RCBR, KC_MINS,    KC_UNDS, KC_GRV,  _______,
+        _______, XXXXXXX, XXXXXXX,  XXXXXXX, KC_LBRC, XXXXXXX, XXXXXXX, KC_RBRC, RALT(KC_5), XXXXXXX, KC_BSLS, _______,
+                                    _______, _______, _______, _______, _______, _______
     ),
 
     /* fn2 - navigation and function keys
@@ -112,18 +112,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ┌─────┬─────┤     ├─────┤     ├─────┐              ┌─────┤  7  ├─────┤  9  ├─────┬─────┐
      * │     │     ├─────┤prev ├─────┤     │              │     ├─────┤  5  ├─────┤  -  │     │
      * ├─────┼─────┤play ├─────┤next ├─────┤              ├─────┤  4  ├─────┤  6  ├─────┼─────┤
-     * │     │     ├─────┤vol- ├─────┤     │              │     ├─────┤  2  ├─────┤  0  │     │
+     * │     │     ├─────┤vol- ├─────┤     │              │  0  ├─────┤  2  ├─────┤  .  │     │
      * ├─────┼─────┤     ├─────┤vol+ ├─────┤              ├─────┤  1  ├─────┤  3  ├─────┼─────┤
-     * │     │     ├─────┘     └─────┤     │              │     ├─────┘     └─────┤  .  │     │
+     * │     │     ├─────┘     └─────┤     │              │     ├─────┘     └─────┤  :  │     │
      * └─────┴─────┘        ┌─────┐  └─────┘              └─────┘  ┌─────┐        └─────┴─────┘
      *                      │     │┌─────┐┌─────┐    ┌─────┐┌─────┐│     │
      *                      └─────┘│     ││     │    │  0  ││     │└─────┘
      *                             └─────┘└─────┘    └─────┘└─────┘
      */
     [LY_FN3] = LAYOUT_split_3x6_3(
-        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_7,    KC_8,   KC_9, KC_MINS, _______,
-        _______, XXXXXXX, KC_MPLY, KC_MPRV, KC_MNXT, XXXXXXX, XXXXXXX, KC_4,    KC_5,   KC_6, KC_0,    _______,
-        _______, XXXXXXX, XXXXXXX, KC_VOLD, KC_VOLU, XXXXXXX, XXXXXXX, KC_1,    KC_2,   KC_3, KC_DOT,  _______,
+        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_7,    KC_8,   KC_9, KC_MINS,       _______,
+        _______, XXXXXXX, KC_MPLY, KC_MPRV, KC_MNXT, XXXXXXX, KC_0,    KC_4,    KC_5,   KC_6, KC_DOT,        _______,
+        _______, XXXXXXX, XXXXXXX, KC_VOLD, KC_VOLU, XXXXXXX, XXXXXXX, KC_1,    KC_2,   KC_3, RSFT(KC_SCLN), _______,
                                    _______, _______, _______, KC_0 ,   _______, _______
     )
 };
