@@ -12,6 +12,7 @@
 // special key shortcuts -------------------------------------------------------
 
 #define CTSP___ CTL_T(KC_SPC)        // space or left control when held
+#define FN3SP__ LT(LY_FN3, KC_SPC)   // space or fn3 when held
 #define HOME___ LGUI(KC_LEFT)        // "home" behaviour on Mac
 #define END____ LGUI(KC_RGHT)        // "end" behaviour on Mac
 #define GUIALT_ TD(TD_GUI_ALT)       // tap dance: GUI then ALT
@@ -64,15 +65,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ├─────┼─────┤  X  ├─────┤  V  ├─────┤              ├─────┤  M  ├─────┤  .  ├─────┼─────┤
      * │shift│  Z  ├─────┘     └─────┤  B  │              │  N  ├─────┘     └─────┤  /  │shift│
      * └─────┴─────┘        ┌─────┐  └─────┘              └─────┘  ┌─────┐        └─────┴─────┘
-     *                      │ ctl │┌─────┐┌─────┐    ┌─────┐┌─────┐│gu/al│
-     *                      └─────┘│space││ fn1 │    │sp/ct││ fn2 │└─────┘
+     *                      │ ctl │┌─────┐┌─────┐    ┌─────┐┌─────┐│ gui │
+     *                      └─────┘│space││ fn1 │    │sp/f3││ fn2 │└─────┘
      *                             └─────┘└─────┘    └─────┘└─────┘
      */
     [LY_GAME] = LAYOUT_split_3x6_3(
         KC_ESC,    KC_Q, KC_W, KC_E,  KC_R,   KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,    KC_BSPC,
         KC_TAB,    KC_A, KC_S, KC_D,  KC_F,   KC_G,    KC_H,    KC_J,    KC_K,    KC_L,   KC_SCLN, KC_ENT,
-        KC_LSHIFT, KC_Z, KC_X, KC_C,  KC_V,   KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT, KC_SLSH, KC_LSHIFT,
-                             KC_LCTL, KC_SPC, LY01___, CTSP___, LY02___, GUIALT_
+        KC_LSHIFT, KC_Z, KC_X, KC_C,  KC_V,   KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT, KC_SLSH, KC_RSHIFT,
+                             KC_LCTL, KC_SPC, LY01___, FN3SP__, LY02___, KC_RGUI
     ),
 
     /* fn1 - symbols
@@ -83,7 +84,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ├─────┼─────┤  =  ├─────┤  {  ├─────┤              ├─────┤  }  ├─────┤  _  ├─────┼─────┤
      * │     │  '  ├─────┤  ~  ├─────┤  "  │              │  |  ├─────┤  €  ├─────┤  `  │     │
      * ├─────┼─────┤     ├─────┤  [  ├─────┤              ├─────┤  ]  ├─────┤     ├─────┼─────┤
-     * │     │     ├─────┘     └─────┤     │              │     ├─────┘     └─────┤  \  │     │
+     * │ alt │     ├─────┘     └─────┤     │              │     ├─────┘     └─────┤  \  │     │
      * └─────┴─────┘        ┌─────┐  └─────┘              └─────┘  ┌─────┐        └─────┴─────┘
      *                      │     │┌─────┐┌─────┐    ┌─────┐┌─────┐│     │
      *                      └─────┘│     ││     │    │     ││     │└─────┘
@@ -92,7 +93,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LY_FN1] = LAYOUT_split_3x6_3(
         _______, KC_EXLM, KC_AT,    KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR,    KC_LPRN, KC_RPRN, _______,
         _______, KC_QUOT, KC_EQUAL, KC_PLUS, KC_LCBR, KC_DQT,  KC_PIPE, KC_RCBR, KC_MINS,    KC_UNDS, KC_GRV,  _______,
-        _______, XXXXXXX, XXXXXXX,  KC_TILD, KC_LBRC, XXXXXXX, XXXXXXX, KC_RBRC, RALT(KC_5), XXXXXXX, KC_BSLS, _______,
+        KC_RALT, XXXXXXX, XXXXXXX,  KC_TILD, KC_LBRC, XXXXXXX, XXXXXXX, KC_RBRC, RALT(KC_5), XXXXXXX, KC_BSLS, _______,
                                     _______, _______, _______, _______, _______, _______
     ),
 
@@ -158,7 +159,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                 oled_write_ln_P(PSTR("stay focused!"), false);
                 break;
             case LS_GAME:
-                oled_write_ln_P(PSTR("wooo!"), false);
+                oled_write_ln_P(PSTR("let's play!"), false);
                 break;
             default:
                 // display nothing when a temporary layer is active
