@@ -12,10 +12,10 @@
 // special key shortcuts -------------------------------------------------------
 
 #define CTSP___ CTL_T(KC_SPC)        // space or left control when held
-#define FN3SP__ LT(LY_FN3, KC_SPC)   // space or fn3 when held
+#define LY3ESC_ LT(LY_FN3, KC_ESC)   // escape or layer 3 when held
 #define HOME___ LGUI(KC_LEFT)        // "home" behaviour on Mac
 #define END____ LGUI(KC_RGHT)        // "end" behaviour on Mac
-#define GUIALT_ TD(TD_GUI_ALT)       // tap dance: GUI then ALT
+#define ALTGUI_ TD(TD_ALT_GUI)       // tap dance: ALT then GUI
 #define GAME___ TG(LY_GAME)          // toggles the GAMING layer
 #define LY01___ MO(LY_FN1)
 #define LY02___ MO(LY_FN2)
@@ -24,11 +24,11 @@
 // tap dance -------------------------------------------------------------------
 
 enum {
-    TD_GUI_ALT = 0,
+    TD_ALT_GUI = 0,
 };
 
 qk_tap_dance_action_t tap_dance_actions[] = {
-    [TD_GUI_ALT] = ACTION_TAP_DANCE_DOUBLE(KC_RGUI, KC_RALT),
+    [TD_ALT_GUI] = ACTION_TAP_DANCE_DOUBLE(KC_RALT, KC_RGUI),
 };
 
 // layouts ---------------------------------------------------------------------
@@ -55,25 +55,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                              LY03___, LY01___, KC_LSHIFT, CTSP___, LY02___, KC_RGUI
     ),
 
-    /* gaming layer
+    /* qwerty (for windows games)
      *                   ┌─────┐                                      ┌─────┐
      *             ┌─────┤  E  ├─────┐                          ┌─────┤  I  ├─────┐
      * ┌─────┬─────┤  W  ├─────┤  R  ├─────┐              ┌─────┤  U  ├─────┤  O  ├─────┬─────┐
-     * │ esc │  Q  ├─────┤  D  ├─────┤  T  │              │  Y  ├─────┤  K  ├─────┤  P  │ bsp │
+     * │esc/3│  Q  ├─────┤  D  ├─────┤  T  │              │  Y  ├─────┤  K  ├─────┤  P  │ del │
      * ├─────┼─────┤  S  ├─────┤  F  ├─────┤              ├─────┤  J  ├─────┤  L  ├─────┼─────┤
      * │ tab │  A  ├─────┤  C  ├─────┤  G  │              │  H  ├─────┤  ,  ├─────┤  ;  │enter│
      * ├─────┼─────┤  X  ├─────┤  V  ├─────┤              ├─────┤  M  ├─────┤  .  ├─────┼─────┤
      * │shift│  Z  ├─────┘     └─────┤  B  │              │  N  ├─────┘     └─────┤  /  │shift│
      * └─────┴─────┘        ┌─────┐  └─────┘              └─────┘  ┌─────┐        └─────┴─────┘
-     *                      │ ctl │┌─────┐┌─────┐    ┌─────┐┌─────┐│ gui │
-     *                      └─────┘│space││ fn1 │    │sp/f3││ fn2 │└─────┘
+     *                      │ ctl │┌─────┐┌─────┐    ┌─────┐┌─────┐│al/gu│
+     *                      └─────┘│space││ fn1 │    │sp/ct││ fn2 │└─────┘
      *                             └─────┘└─────┘    └─────┘└─────┘
      */
     [LY_GAME] = LAYOUT_split_3x6_3(
-        KC_ESC,    KC_Q, KC_W, KC_E,  KC_R,   KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,    KC_BSPC,
+        LY3ESC_,   KC_Q, KC_W, KC_E,  KC_R,   KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,    KC_DEL,
         KC_TAB,    KC_A, KC_S, KC_D,  KC_F,   KC_G,    KC_H,    KC_J,    KC_K,    KC_L,   KC_SCLN, KC_ENT,
-        KC_LSHIFT, KC_Z, KC_X, KC_C,  KC_V,   KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT, KC_SLSH, KC_RSHIFT,
-                             KC_LCTL, KC_SPC, LY01___, FN3SP__, LY02___, KC_RGUI
+        KC_LSHIFT, KC_Z, KC_X, KC_C,  KC_V,   KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT, KC_SLSH, KC_LSHIFT,
+                             KC_LCTL, KC_SPC, LY01___, CTSP___, LY02___, ALTGUI_
     ),
 
     /* fn1 - symbols
@@ -91,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                             └─────┘└─────┘    └─────┘└─────┘
      */
     [LY_FN1] = LAYOUT_split_3x6_3(
-        _______, KC_EXLM, KC_AT,    KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR,    KC_LPRN, KC_RPRN, _______,
+        KC_ESC,  KC_EXLM, KC_AT,    KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR,    KC_LPRN, KC_RPRN, _______,
         _______, KC_QUOT, KC_EQUAL, KC_PLUS, KC_LCBR, KC_DQT,  KC_PIPE, KC_RCBR, KC_MINS,    KC_UNDS, KC_GRV,  _______,
         KC_RALT, XXXXXXX, XXXXXXX,  KC_TILD, KC_LBRC, XXXXXXX, XXXXXXX, KC_RBRC, RALT(KC_5), XXXXXXX, KC_BSLS, _______,
                                     _______, _______, _______, _______, _______, _______
@@ -105,17 +105,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ├─────┼─────┤     ├─────┤ctrl ├─────┤              ├─────┤left ├─────┤ up  ├─────┼─────┤
      * │     │     ├─────┤     ├─────┤     │              │     ├─────┤pgdwn├─────┤right│     │
      * ├─────┼─────┤     ├─────┤     ├─────┤              ├─────┤home ├─────┤pgup ├─────┼─────┤
-     * │     │     ├─────┘     └─────┤GAME │              │     ├─────┘     └─────┤ end │     │
+     * │     │     ├─────┘     └─────┤     │              │     ├─────┘     └─────┤ end │     │
      * └─────┴─────┘        ┌─────┐  └─────┘              └─────┘  ┌─────┐        └─────┴─────┘
      *                      │     │┌─────┐┌─────┐    ┌─────┐┌─────┐│     │
-     *                      └─────┘│     ││     │    │     ││     │└─────┘
+     *                      └─────┘│     ││     │    │GAME ││     │└─────┘
      *                             └─────┘└─────┘    └─────┘└─────┘
      */
     [LY_FN2] = LAYOUT_split_3x6_3(
         _______, XXXXXXX, XXXXXXX, XXXXXXX,   XXXXXXX,  XXXXXXX, XXXXXXX, KC_BSPC, XXXXXXX, XXXXXXX, KC_DEL,  _______,
         _______, XXXXXXX, XXXXXXX, KC_LSHIFT, KC_LCTRL, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,
-        _______, XXXXXXX, XXXXXXX, XXXXXXX,   XXXXXXX,  GAME___, XXXXXXX, HOME___, KC_PGDN, KC_PGUP, END____, _______,
-                                   _______,   _______,  _______, _______, _______, _______
+        _______, XXXXXXX, XXXXXXX, XXXXXXX,   XXXXXXX,  XXXXXXX, XXXXXXX, HOME___, KC_PGDN, KC_PGUP, END____, _______,
+                                   _______,   _______,  _______, GAME___, _______, _______
     ),
 
     /* fn3 - numbers and media
