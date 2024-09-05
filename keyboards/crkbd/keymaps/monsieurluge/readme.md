@@ -17,19 +17,26 @@ Prerequisites:
 
  - Docker
  - make
- - avrdude
 
 Then, run this command: `sudo make git-submodule`
 
 ## on MacOS
 
-Simply install qmk via _Brew_.
+Install these packages via _HomeBrew_:
+
+- qmk
+- avrdude
+- avr-gcc
 
 # Build
 
 ## Firmware
 
 `sudo util/docker_build.sh crkbd:monsieurluge`
+
+Or on MacOS:
+
+`qmk compile -kb crkbd -km monsieurluge`
 
 ## Flash
 
@@ -54,3 +61,5 @@ Run the command:
 ```bash
 qmk flash --keyboard crkbd/rev1 --keymap monsieurluge
 ```
+
+Or use the _QMK Toolbox_.
