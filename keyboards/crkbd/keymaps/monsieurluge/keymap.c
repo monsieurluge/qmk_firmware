@@ -27,7 +27,7 @@ enum {
     TD_ALT_GUI = 0,
 };
 
-qk_tap_dance_action_t tap_dance_actions[] = {
+tap_dance_action_t tap_dance_actions[] = {
     [TD_ALT_GUI] = ACTION_TAP_DANCE_DOUBLE(KC_RALT, KC_RGUI),
 };
 
@@ -49,10 +49,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                             └─────┘└─────┘    └─────┘└─────┘
      */
     [LY_BASE] = LAYOUT_split_3x6_3(
-        KC_ESC,    KC_Q, KC_W, KC_E,  KC_R,    KC_T,      KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,    KC_BSPC,
-        KC_TAB,    KC_A, KC_S, KC_D,  KC_F,    KC_G,      KC_H,    KC_J,    KC_K,    KC_L,   KC_SCLN, KC_ENT,
-        KC_LSHIFT, KC_Z, KC_X, KC_C,  KC_V,    KC_B,      KC_N,    KC_M,    KC_COMM, KC_DOT, KC_SLSH, KC_RALT,
-                             LY03___, LY01___, KC_LSHIFT, CTSP___, LY02___, KC_RGUI
+        KC_ESC,  KC_Q, KC_W, KC_E,  KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,    KC_BSPC,
+        KC_TAB,  KC_A, KC_S, KC_D,  KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,   KC_SCLN, KC_ENT,
+        KC_LSFT, KC_Z, KC_X, KC_C,  KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT, KC_SLSH, KC_RALT,
+                           LY03___, LY01___, KC_LSFT, CTSP___, LY02___, KC_RGUI
     ),
 
     /* qwerty (for windows games)
@@ -70,10 +70,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                             └─────┘└─────┘    └─────┘└─────┘
      */
     [LY_GAME] = LAYOUT_split_3x6_3(
-        LY3ESC_,   KC_Q, KC_W, KC_E,  KC_R,   KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,    KC_BSPC,
-        KC_TAB,    KC_A, KC_S, KC_D,  KC_F,   KC_G,    KC_H,    KC_J,    KC_K,    KC_L,   KC_SCLN, KC_ENT,
-        KC_LSHIFT, KC_Z, KC_X, KC_C,  KC_V,   KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT, KC_SLSH, KC_LSHIFT,
-                             KC_LCTL, KC_SPC, LY01___, CTSP___, LY02___, ALTGUI_
+        LY3ESC_, KC_Q, KC_W, KC_E,  KC_R,   KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,    KC_BSPC,
+        KC_TAB,  KC_A, KC_S, KC_D,  KC_F,   KC_G,    KC_H,    KC_J,    KC_K,    KC_L,   KC_SCLN, KC_ENT,
+        KC_LSFT, KC_Z, KC_X, KC_C,  KC_V,   KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT, KC_SLSH, KC_LSFT,
+                           KC_LCTL, KC_SPC, LY01___, CTSP___, LY02___, ALTGUI_
     ),
 
     /* fn1 - symbols
@@ -112,10 +112,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                             └─────┘└─────┘    └─────┘└─────┘
      */
     [LY_FN2] = LAYOUT_split_3x6_3(
-        _______, XXXXXXX, XXXXXXX, XXXXXXX,   XXXXXXX,  XXXXXXX, XXXXXXX, KC_BSPC, XXXXXXX, XXXXXXX, KC_DEL,  _______,
-        _______, XXXXXXX, XXXXXXX, KC_LSHIFT, KC_LCTRL, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,
-        _______, XXXXXXX, XXXXXXX, XXXXXXX,   XXXXXXX,  XXXXXXX, XXXXXXX, HOME___, KC_PGDN, KC_PGUP, END____, _______,
-                                   _______,   _______,  _______, GAME___, _______, _______
+        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BSPC, XXXXXXX, XXXXXXX, KC_DEL,  _______,
+        _______, XXXXXXX, XXXXXXX, KC_LSFT, KC_LCTL, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,
+        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, HOME___, KC_PGDN, KC_PGUP, END____, _______,
+                                   _______, _______, _______, GAME___, _______, _______
     ),
 
     /* fn3 - numbers and media
@@ -164,12 +164,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             default:
                 // display nothing when a temporary layer is active
                 break;
-        }
-    }
-
-    void oled_task_user(void) {
-        if (is_keyboard_master()) {
-            oled_render_layer_state();
         }
     }
 #endif
