@@ -31,6 +31,16 @@ tap_dance_action_t tap_dance_actions[] = {
     [TD_ALT_GUI] = ACTION_TAP_DANCE_DOUBLE(KC_RALT, KC_RGUI),
 };
 
+// combos ----------------------------------------------------------------------
+
+const uint16_t PROGMEM combo_tab[] = {KC_A, KC_S, COMBO_END};
+const uint16_t PROGMEM combo_enter[] = {KC_L, KC_SCLN, COMBO_END};
+
+combo_t key_combos[] = {
+    COMBO(combo_tab, KC_TAB),
+    COMBO(combo_enter, KC_ENT),
+};
+
 // layouts ---------------------------------------------------------------------
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
