@@ -111,7 +111,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                   ┌─────┐                                      ┌─────┐
      *             ┌─────┤     ├─────┐                          ┌─────┤     ├─────┐
      * ┌─────┬─────┤     ├─────┤     ├─────┐              ┌─────┤ bsp ├─────┤     ├─────┬─────┐
-     * │     │     ├─────┤shift├─────┤     │              │     ├─────┤down ├─────┤ del │     │
+     * │     │ ESC ├─────┤shift├─────┤     │              │     ├─────┤down ├─────┤ del │     │
      * ├─────┼─────┤     ├─────┤ctrl ├─────┤              ├─────┤left ├─────┤ up  ├─────┼─────┤
      * │     │     ├─────┤     ├─────┤     │              │     ├─────┤pgdwn├─────┤right│     │
      * ├─────┼─────┤     ├─────┤     ├─────┤              ├─────┤home ├─────┤pgup ├─────┼─────┤
@@ -122,7 +122,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                             └─────┘└─────┘    └─────┘└─────┘
      */
     [LY_FN2] = LAYOUT_split_3x6_3(
-        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BSPC, XXXXXXX, XXXXXXX, KC_DEL,  _______,
+        _______, KC_ESC,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BSPC, XXXXXXX, XXXXXXX, KC_DEL,  _______,
         _______, XXXXXXX, XXXXXXX, KC_LSFT, KC_LCTL, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,
         _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, HOME___, KC_PGDN, KC_PGUP, END____, _______,
                                    _______, _______, _______, GAME___, _______, _______
